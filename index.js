@@ -1,5 +1,9 @@
 var Container = require('./lib/Container')
+var Domain = require('./lib/Domain')
 
-module.exports = function (options) {
+exports.Container = Container
+exports.Domain = Domain
+
+exports.create = function (options){
 	return new Container(options)
 }
