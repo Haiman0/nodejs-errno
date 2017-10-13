@@ -132,6 +132,46 @@ describe('Container',function () {
 		
 	})
 
+	describe('#lockSync()', function (){
+		it('should throw error when the options.lockFile argument not set', function (){
+			var c = new Container()
+			try{
+				c.lockSync()
+			} catch(e){
+				if(e.message === 'not set lockFile'){
+					assert(true)
+				} else {
+					throw e
+				}
+				return
+			}
+			assert(false, 'not error')
+		})
+
+		it('should freeze code unchanged  when options.lockFile has been set', function (){
+			var lockFile, renamedLockFile, c, codes;
+			codes = {}
+			lockFile = path.join(__dirname, 'lockFile2.freeze')
+			renamedLockFile = path.join(__dirname, 'lockFile2.freeze.rename')
+			c = new Container( {lockFile: lockFile} )
+			codes.a1 = c.def('/a1', null, factory).code
+			codes.a2 = c.def('/a2', null, factory).code
+			codes.a3 = c.def('/a3', null, factory).code
+			codes.a4 = c.def('/a4', null, factory).code
+			c.lockSync()
+
+			fs.renameSync(lockFile, renamedLockFile)
+			c = new Container( {lockFile: renamedLockFile} )
+			
+			assert(codes.a2 === c.def('/a2', null, factory).code)
+			assert(codes.a4 === c.def('/a4', null, factory).code)
+			assert(codes.a1 === c.def('/a1', null, factory).code)
+			assert(codes.a3 === c.def('/a3', null, factory).code)
+
+			fs.unlinkSync(renamedLockFile)
+		})
+	})
+
 	describe('#make', function (){
 		it('should throw error when domain argument missing', function (){
 			var c = new Container()
