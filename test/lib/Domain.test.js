@@ -114,29 +114,14 @@ describe('Domain',function () {
 			assert(false, 'no error')
 		})
 
-		it('should throw error when container argument is not instance of Container', function (){
-			var d
-			d = new Domain('/a/b/c')
-			try{
-				d.make([])
-			} catch (e){
-				if(e.message === 'container argument must be a instance of Container'){
-					assert(true)
-				} else {
-					throw e
-				}
-				return
-			}
-			assert(false, 'no error')
-		})
-
-		it('should without error when set container by argument', function (){
+		it('should without error when set container by #setContainer', function (){
 			var d, c
 			c = new Container()
 			c.def('/a/b/c', null, function (){})
 
 			d = new Domain('/a/b/c')
-			d.make(c)
+			d.setContainer(c)
+			d.make()
 		})
 
 		it('should without error when set container by constructor argument', function (){
