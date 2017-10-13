@@ -133,4 +133,49 @@ describe('Domain',function () {
 			d.make()
 		})
 	})
+
+	describe('#setContainer()', function (){
+
+		it('should throw error when the argument is not an instance of Container', function (){
+			var d
+			d = new Domain('/test')
+
+			var setContainer = function (c){
+				try{
+					d.setContainer(c)
+				} catch(e){
+					if(e.message !== 'container argument must be a instance of Container'){
+						throw  e
+					}
+					return
+				}
+				assert(false, 'no error when type is ' + Object.prototype.toString.call(d).slice(8, -1))
+			}
+
+			setContainer([])
+			setContainer(123)
+			setContainer(true)
+		})
+	})
+
+	describe('#getContainer()', function (){
+
+		it('should return same container as set by constructor argument', function (){
+			var d, c
+			c = new Container()
+			d = new Domain('/test', c)
+
+			assert(d.getContainer() === c)
+		})
+
+		it('should return same container as set by #setContainer()', function (){
+			var d, c
+			c = new Container()
+			d = new Domain('/test')
+			d.setContainer(c)
+
+
+			assert(d.getContainer() === c)
+		})
+	})
 })
