@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require intelli-espower-loader test/**/*.js"
   },
   "keywords": [
     "errno"
@@ -12,5 +12,8 @@
   "author": "haiman",
   "license": "ISC",
   "devDependencies": {
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^3.5.3",
+    "power-assert": "^1.4.4"
   }
 }
