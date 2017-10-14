@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require intelli-espower-loader test/**/*.js"
+    "test": "mocha --require intelli-espower-loader test/*.test.js test/**/*.test.js"
   },
   "keywords": [
     "errno"
