@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require intelli-espower-loader test/*.test.js test/**/*.test.js"
+    "test": "mocha --require intelli-espower-loader test/*.test.js test/**/*.test.js",
+    "test_cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require intelli-espower-loader --reporter dot test/*.test.js test/**/*.test.js",
+    "test_ci": "istanbul cover node_modules/mocha/bin/_mocha --require intelli-espower-loader --reporter lcovonly test/*.test.js test/**/*.test.js"
   },
   "keywords": [
     "errno"
@@ -13,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "intelli-espower-loader": "^1.0.1",
+    "istanbul": "^0.4.5",
     "mocha": "^3.5.3",
     "power-assert": "^1.4.4"
   }
