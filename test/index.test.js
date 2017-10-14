@@ -7,7 +7,7 @@ describe('code正确性',function () {
 	describe('层级前缀', function (){
 
 		it('1-17层', function (){
-			var eno = errno()
+			var eno = errno.create()
 			var parent = ''
 			var e
 			var factory = function (){}
@@ -21,7 +21,7 @@ describe('code正确性',function () {
 		})
 
 		it('同层不同domain序号递增: 8层2000个', function (){
-			var eno = errno()
+			var eno = errno.create()
 			var e
 			var factory = function (){}
 			var createDomain = function (){
@@ -43,7 +43,7 @@ describe('code正确性',function () {
 
 	it('10000个不同名1~4层级domain不重复', function (done){
 		this.timeout(4000)
-		var eno = errno()
+		var eno = errno.create()
 		var arr = []
 		var tmp
 		var factory = function (){}
