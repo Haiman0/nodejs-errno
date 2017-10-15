@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc2md lib/*.js > docs/api.md"
   },
   "keywords": [
     "errno"
@@ -12,5 +13,6 @@
   "author": "haiman",
   "license": "ISC",
   "devDependencies": {
+    "jsdoc-to-markdown": "^3.0.0"
   }
 }
